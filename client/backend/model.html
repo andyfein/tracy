@@ -1,0 +1,33 @@
+<template name="model">
+{{ > svg}}
+{{ > componentDialog}}
+<main class="mdl-layout__content">
+<div class="mdl-color--blue-grey-800 tracy-toolbox mdl-shadow--2dp">
+  <ul class="mdl-list">
+	<li class="mdl-list__item">
+	<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored tracy-actions tracy-actions-add-component">
+	  Add Component
+	</button>
+
+	</li>
+	<li class="mdl-list__item">
+	<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored tracy-actions tracy-actions-add-link">
+	  Add Link
+	</button>
+
+	</li>
+	<li class="mdl-list__item">
+	<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent tracy-actions tracy-actions-move">
+	  Move
+	</button>
+
+	</li>
+  </ul>
+</div>
+<div class="canvas-container">
+  <svg id="canvas"></svg>
+</div>
+</main>
+
+
+</template>
