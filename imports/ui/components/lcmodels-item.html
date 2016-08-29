@@ -1,0 +1,11 @@
+<template name="LcModels_item">
+<li class="collection-item avatar">
+<i class="material-icons circle">loop</i>
+<span class="title">{{name}}</span>
+<p>{{riskModelId}}<br/>
+{{email}}
+</p>
+<a href="" class="js-delete-lcmodel secondary-content"><i class="material-icons">delete</i></a>
+<a href="{{pathFor 'LcModels.edit' lcmodelId=_id}}" target="_blank" class="tertiary-content"><i class="material-icons">edit</i></a>
+</li>
+</template>

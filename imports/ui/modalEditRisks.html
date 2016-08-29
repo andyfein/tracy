@@ -1,0 +1,48 @@
+<template name="modalEditRisks">
+<div id="modal-edit-risks" class="modal modal-fixed-footer">
+  <form class="edit-risks">
+	<div class="modal-content">
+	  <h4>Risks</h4>
+	  <table>
+		<thead>
+		  <tr>
+			<th data-field="country">Country</th>
+			<th data-field="cl"><img src="tracyml/risk-cl.svg" class="circle"/></th>
+			<th data-field="eo"><img src="tracyml/risk-eo.svg" class="circle"/></th>
+			<th data-field="fa"><img src="tracyml/risk-fa.svg" class="circle"/></th>
+			<th data-field="fl"><img src="tracyml/risk-fl.svg" class="circle"/></th>
+			<th data-field="fs"><img src="tracyml/risk-fs.svg" class="circle"/></th>
+			<th data-field="hs"><img src="tracyml/risk-hs.svg" class="circle"/></th>
+			<th data-field="sb"><img src="tracyml/risk-sb.svg" class="circle"/></th>
+			<th data-field="wh"><img src="tracyml/risk-wh.svg" class="circle"/></th>
+			<th data-field="s"><img src="tracyml/risk-s.svg" class="circle"/></th>
+			<th></th>
+		  </tr>
+		</thead>
+		<tbody>
+		{{#each countries}}
+		<tr>
+		  <td>{{name}}</td>
+		  {{#each risk in riskList}}
+		  <td>
+			{{risk.value}}
+		  </td>
+		  {{/each}}
+		  <td>
+			<button class="btn-floating waves-effect waves-light"><i class="material-icons">delete</i></button>
+		  </td>
+
+		</tr>
+		{{/each}}
+		</tbody>
+	  </table>
+	  <div class="center-align">
+		<button class="waves-effect waves-light btn">Add New</button>
+	  </div>
+	</div>
+	<div class="modal-footer">
+	  <a href="#!" class="modal-action modal-close waves-effect waves-light btn-flat">Close</a>
+	</div>
+  </form>
+</div>
+</template>

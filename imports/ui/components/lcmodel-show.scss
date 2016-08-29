@@ -1,0 +1,38 @@
+.risk-view {
+  width: 400px;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+}
+
+.view-switcher {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 150px;
+}
+
+svg.canvas {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  cursor: move;
+}
+
+polyline.connector-line{
+  fill: none;
+  stroke: #B6B6B6;
+  stroke-width: 5;
+  stroke-linejoin: round;
+}
+
+polyline.connector-overlay{
+  fill: none;
+  stroke: red;
+  stroke-opacity: 0;
+  stroke-width: 100;
+  stroke-linejoin: round;
+}
+marker {
+  fill: #B6B6B6;
+}

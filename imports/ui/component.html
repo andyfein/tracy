@@ -1,0 +1,28 @@
+<template name="component">
+<g class="component" id="_{{_id}}" transform="translate({{x}},{{y}})">
+  <rect
+  width="185"
+  height="135"
+  class="risk-{{riskLevel siteLocation type}}"
+  style="fill-opacity:1;stroke:#212121;stroke-width:{{strokeWidth}};stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+  {{#if isUnknownComponent type}}
+  <text class="unknown" x="70" y="70">...</text>
+  {{else}}
+  <text class="name" x="5" y="22">{{name}}</text>
+  <text class="firmName" x="5" y="48">{{firmName}}</text>
+  <text class="siteLocation" x="5" y="66">{{locationName siteLocation}}</text>
+  {{#if contains activities "contacted"}}
+  <use xlink:href="#contacted" x={{activityX activities "contacted"}} y="95" />
+  {{/if}}
+  {{#if contains activities "visited"}}
+  <use xlink:href="#visited" x={{activityX activities "visited"}} y="95" />
+  {{/if}}
+  {{#if contains activities "negotiating"}}
+  <use xlink:href="#negotiating" x={{activityX activities "negotiating"}} y="95" />
+  {{/if}}
+  {{/if}}
+  <text class="action action-edit {{hidden}}" x="145" y="125">EDIT</text>
+  <text class="action action-delete {{hidden}}" x="168" y="18" >X</text>
+  <circle class="action action-connect {{hidden}}" cx="92.5" cy="135" r="7" onmouseover="this.setAttribute('r', 10)" onmouseout="this.setAttribute('r', 7)"/>
+</g>
+</template>

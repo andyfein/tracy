@@ -1,0 +1,11 @@
+<template name="Public_body">
+<header>
+</header>
+<main>
+{{#if Template.subscriptionsReady}}
+{{> Template.dynamic template=main}}
+{{else}}
+page not loading
+{{/if}}
+</main>
+</template>

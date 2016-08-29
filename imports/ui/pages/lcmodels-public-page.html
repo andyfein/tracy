@@ -1,0 +1,31 @@
+<template name="LcModels_public_page">
+<div class="row model-list-headline">
+  <div class="col l9 s12">
+	<h2 class="left">Explore Life Cycle Models</h2>
+  </div>
+	{{#unless currentUser}}
+  <div class="col l3 s12">
+	<div class="valign-wrapper right">
+	  <a href="{{pathFor 'join'}}" class="waves-effect waves-light btn teal darken-3 valign">Join</a>
+	  <a href="{{pathFor 'signin'}}" class="waves-effect waves-light btn teal darken-3 valign sign-in-button">Sign In</a>
+	</div>
+
+  </div>
+	{{/unless}}
+</div>
+<div class="row">
+  {{#each lcmodel in lcmodels}}
+  <div class="col s12 m6">
+	<div class="card">
+	  <div class="card-content ">
+		<span class="card-title">{{lcmodel.name}}</span>
+		<p>{{lcmodel.riskModelId}}</p>
+	  </div>
+	  <div class="card-action">
+		<a href="{{pathFor 'Explore' lcmodelId=lcmodel._id}}" class="teal-text darken-4">Explore</a>
+	  </div>
+	</div>
+  </div>
+  {{/each}}
+</div>
+</template>

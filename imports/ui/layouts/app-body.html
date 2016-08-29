@@ -1,0 +1,86 @@
+<template name="App_body">
+<div class="page-flexbox-wrapper">
+<header>
+<div class="navbar">
+  <nav class="teal darken-4 z-depth-2">
+	<div class="nav-wrapper">
+	  <a href="/" class="brand-logo primary"><img id="phoenix-logo" src="{{urlFor 'App.home'}}/phoenixlogo.png"/></a>
+	  <a href="/" class="brand-logo secondary hide-on-med-and-down">Tracy</a>
+
+	  <ul class="right hide-on-med-and-down">
+
+	  {{#if currentUser}}
+		<li class="{{isActiveRoute 'LcModels.show'}}"><a href="{{pathFor 'LcModels.show'}}"><i class="material-icons left">loop</i>Life Cycle Models</a></li>
+		<li class="{{isActiveRoute 'RiskModels.show'}}"><a href="{{pathFor 'RiskModels.show'}}"><i class="material-icons left">warning</i>Risk Models</a></li>
+		<!--<li class="{{isActiveRoute 'Regions.show'}}"><a href="{{pathFor 'Regions.show'}}"><i class="material-icons left">flag</i>Regions</a></li> -->
+
+	  {{/if}}
+		<li><a href="#" class="dropdown-button" data-activates="user-dropdown"><i class="material-icons">more_vert</i></a></li>
+	  </ul>
+
+	  <ul id="nav-mobile" class="side-nav">
+		<li><a href="#">Hier sollte der Benutzername stehen</a></li>
+	  </ul>
+	  <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+	</div>
+  </nav>
+  <ul id="user-dropdown" class="dropdown-content">
+	<li><a href="#!">PHOENIX Apps</a></li>
+	<li class="divider"></li>
+	{{#if currentUser}}
+	<li><a class="js-logout">Logout</a></li>
+	{{else}}
+	<li><a href="{{pathFor 'signin'}}">Sign In</a></li>
+	<li><a href="{{pathFor 'join'}}">Join</a></li>
+	{{/if}}
+
+  </ul>
+</div>
+</header>
+<main>
+<div class="container">
+{{#if Template.subscriptionsReady}}
+{{> Template.dynamic template=main}}
+{{else}}
+{{> App_loading}}
+{{/if}}
+</div>
+</main>
+<!--
+<footer class="page-footer teal darken-3">
+<div class="container">
+  <div class="row">
+	<div class="col l6 s12">
+	  <h5 class="white-text">PHOENIX by aifb</h5>
+	  <p class="grey-text text-lighten-4">Fülltext zur Beschreibung von PHOENIX... Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. </p>
+
+
+	</div>
+	<div class="col l3 s12">
+	  <h5 class="white-text">Settings</h5>
+	  <ul>
+		<li><a class="teal-text text-lighten-3" href="#!">Interner Bereich</a></li>
+		<li><a class="teal-text text-lighten-3" href="#!">User-Verwaltung</a></li>
+		<li><a class="teal-text text-lighten-3" href="#!">Service-Repository</a></li>
+	  </ul>
+	</div>
+	<div class="col l3 s12">
+	  <h5 class="white-text">...</h5>
+	  <ul>
+		<li><a class="teal-text text-lighten-3" href="#!">Über PHOENIX</a></li>
+		<li><a class="teal-text text-lighten-3" href="#!">Impressum</a></li>
+		<li><a class="teal-text text-lighten-3" href="#!">aifb</a></li>
+		<li><a class="teal-text text-lighten-3" href="#!">Lizenz</a></li>
+	  </ul>
+	</div>
+  </div>
+</div>
+<div class="footer-copyright">
+  <div class="container">
+	Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+  </div>
+</div>
+</footer>
+-->
+</div>
+</template>

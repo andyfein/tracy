@@ -1,0 +1,54 @@
+<template name="LcModel_public">
+{{#if subsReady}}
+  <svg class="canvas">
+	<defs>
+	<path id="ic_delete" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+	<path id="ic_edit" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+	<path id="ic_arrow_down" d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
+	<path id="ic_arrow_up" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+
+    <marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="270" markerUnits="strokeWidth" viewBox="0 0 20 20">
+	<path d="M0,0 L0,6 L9,3 z" />
+    </marker>
+
+	</defs>
+	<g class="js-zoom-pan" style="{{transform}}">
+	<polyline id="temporary-connector" class="connector-line" stroke-dasharray="5,5" marker-start="url(#arrow)"/>
+
+	{{#each connect in connects}}
+	{{> Connect_item (connectArgs connect)}}
+	{{/each}}
+	{{#each comp in comps}}
+	{{> Comps_item_public (compArgs comp)}}
+	{{/each}}
+
+	</g>
+  </svg>
+{{else}}
+Loading components...
+{{/if}}
+
+<div class="risk-view">
+  <div class="input-field">
+	<select class="js-select-risk icons">
+	  <optgroup label="aggregated">
+	  <option value="s" data-icon="/tracyml/risk-s.svg" class="left circle" selected>Social Sustainability (Workers)</option>
+	  </optgroup>
+	  <optgroup label="single values">
+	  <option value="cl" data-icon="/tracyml/risk-cl.svg" class="left circle">Child Labour</option>
+	  <option value="eo" data-icon="/tracyml/risk-eo.svg" class="left circle">Equal Opportunities</option>
+	  <option value="fa" data-icon="/tracyml/risk-fa.svg" class="left circle">Freedom of Association</option>
+	  <option value="fs" data-icon="/tracyml/risk-fl.svg" class="left circle">Fair Salary</option>
+	  <option value="sb" data-icon="/tracyml/risk-sb.svg" class="left circle">Social Security</option>
+	  <option value="wh" data-icon="/tracyml/risk-wh.svg" class="left circle">Working Hours</option>
+	  <option value="hs" data-icon="/tracyml/risk-hs.svg" class="left circle">Health and Safety</option>
+	  </optgroup>
+	</select>
+	<label>Risk View</label>
+  </div>
+</div>
+
+<a href="{{pathFor 'Explore.map' lcmodelId=lcmodel._id}}" class="view-switcher waves-effect waves-light btn-large">Map</a>
+
+
+</template>

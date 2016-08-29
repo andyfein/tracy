@@ -1,0 +1,34 @@
+// If you want to override materialize sass variables you can uncomment the following:
+//@import "{poetic:materialize-scss}/sass/components/_color.scss";
+//$primary-color: color("light-green", "base");
+//$secondary-color: color("blue-grey", "base");
+
+//$link-color: color("blue-grey", "base") !default;
+
+// import main scss file
+@import "{poetic:materialize-scss}/sass/materialize.scss";
+
+// import component files
+@import "../imports/ui/layouts/app-body.scss";
+
+@import "../imports/ui/layouts/model-body.scss";
+@import "../imports/ui/components/lcmodel-map.scss";
+@import "../imports/ui/components/lcmodel-show.scss";
+@import "../imports/ui/components/riskmodel-show.scss";
+@import "../imports/ui/components/comps-item.scss";
+@import "../imports/ui/pages/lcmodels-public-page.scss";
+
+
+/*
+.risk-menu {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  z-index: 888;
+  background-color: #DDDDDD;
+  padding: 5px;
+  width: 400px;
+
+}
+
+*/

@@ -1,0 +1,59 @@
+/* imported phoenix styles */
+/*
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+nav .brand-logo a{
+	font-size: 30px;
+}
+
+*/
+/* positioning of logo and app name */
+#phoenix-logo {
+	height: 54px;
+	padding-top:10px;
+	padding-left:30px;
+}
+.brand-logo.primary {
+  position: relative;
+}
+.brand-logo.secondary {
+  padding-left: 16px;
+}
+/* stretching pages with little content*/
+.page-flexbox-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+}
+
+.row.model-list-headline {
+  margin-top: 32px;
+  border-bottom: thick solid #424242;
+  margin-right: 0px;
+  margin-left: 0px;
+  .col {
+	padding: 0px;
+  }
+  h2 {
+	margin: 0px;
+  }
+  .valign-wrapper {
+	height: calc(3.56rem * 1.1);
+  }
+}
+
+.tertiary-content {
+  position: absolute;
+  top: 16px;
+  right: 48px;
+  float: right;
+  color: #26a69a;
+}

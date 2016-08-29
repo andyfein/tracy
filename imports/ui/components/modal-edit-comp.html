@@ -1,0 +1,36 @@
+<template name="Modal_editComp">
+<div id="modal-edit-comp" class="modal">
+  <div class="modal-content">
+	<h4>Edit Component</h4>
+	<div class="row">
+	  <div class="input-field col s12">
+		<input value={{editComp.name}} placeholder="Name" id="comp-name" type="text" class="validate">
+		<label for="comp-name">Name</label>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="input-field col s12">
+		<input value={{editComp.firmName}} placeholder="Firm Name" id="comp-firmname" type="text" class="validate">
+		<label for="comp-firmname">Firm Name</label>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="input-field col s12">
+		<label>Site Location</label>
+		<select id="comp-sitelocation">
+		  {{#each region in regions}}
+		  <option value="{{region._id}}" {{selected region._id}}>{{region.name}}</option>
+		  {{/each}}
+		  <option value="" {{selected ""}}>unknown</option>
+		</select>
+	  </div>
+
+	</div>
+  </div>
+  <div class="modal-footer">
+	<a href="#!" class="js-save-edit-comp waves-effect waves-green btn-flat">Create</a>
+	<a href="#!" class="js-cancel-edit-comp waves-effect waves-green btn-flat">Cancel</a>
+  </div>
+</div>
+
+</template>

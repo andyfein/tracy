@@ -1,0 +1,9 @@
+<template name="RiskModel_modeler_page">
+{{#if riskmodelIdArray}}
+  {{#each riskmodelId in riskmodelIdArray}}
+	{{> RiskModel_show (riskmodelArgs riskmodelId)}}
+  {{/each}}
+{{else}}
+modelID not found
+{{/if}}
+</template>

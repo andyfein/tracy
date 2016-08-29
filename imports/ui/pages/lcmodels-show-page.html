@@ -1,0 +1,55 @@
+<template name="LcModels_show_page">
+<div class="row model-list-headline">
+  <div class="col s6">
+	<h2 class="left">Life Cycle Models</h2>
+  </div>
+  <div class="col s6">
+	<div class="valign-wrapper right">
+	  <a class="js-new-lcmodel modal-trigger waves-effect waves-light btn teal darken-3 valign">Create Model</a>
+	</div>
+  </div>
+</div>
+<ul class="collection">
+  {{#each lcmodel in lcmodels}}
+	{{> LcModels_item lcmodel}}
+  {{/each}}
+</ul>
+<div id="modal-new-lcmodel" class="modal">
+  <div class="modal-content">
+	<h4>Create Life Cycle Model</h4>
+	<div class="row">
+	  <div class="input-field col s12">
+		<input placeholder="Model Name" id="lcmodel-name" type="text" class="validate">
+		<label for="lcmodel-name">Model Name</label>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="input-field col s12">
+		<select id="riskmodel-id">
+		  {{#each riskmodel in riskmodels}}
+		  <option value="{{riskmodel._id}}">{{riskmodel.name}}</option>
+
+		  {{/each}}
+		</select>
+		<label>Risk Model</label>
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="col s12">
+		<div class="switch">
+		  <label>
+			Private
+			<input type="checkbox">
+			<span class="lever"></span>
+			Public
+		  </label>
+		</div>
+	  </div>
+	</div>
+  </div>
+  <div class="modal-footer">
+	<a href="#!" class="js-create-new-lcmodel waves-effect waves-green btn-flat">Create</a>
+	<a href="#!" class="js-cancel-new-lcmodel waves-effect waves-green btn-flat">Cancel</a>
+  </div>
+</div>
+</template>

@@ -1,0 +1,9 @@
+<template name="LcModel_modeler_page">
+{{#if lcmodelIdArray}}
+  {{#each lcmodelId in lcmodelIdArray}}
+	{{> LcModel_show (lcmodelArgs lcmodelId)}}
+  {{/each}}
+{{else}}
+modelID not found
+{{/if}}
+</template>
