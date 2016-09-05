@@ -1,0 +1,22 @@
+{
+  "plugins": [
+	"meteor"
+  ],
+  "extends": [
+	"airbnb",
+	"eslint:recommended",
+	"plugin:meteor/recommended"
+  ],
+  "plugins": [
+	"react",
+	"jsx-a11y",
+	"import",
+	"meteor"
+  ],
+  "rules": {
+	"import/no-extraneous-dependencies": "off",
+	"import/no-unresolved": "off",
+    "meteor/template-names": "off",
+	"no-array-constructor": "warn"
+  }
+}

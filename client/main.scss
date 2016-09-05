@@ -8,27 +8,12 @@
 // import main scss file
 @import "{poetic:materialize-scss}/sass/materialize.scss";
 
-// import component files
-@import "../imports/ui/layouts/app-body.scss";
+// import 
+@import "../imports/ui/layouts/list-body.scss";
+@import "../imports/ui/pages/list-explore-page.scss";
 
 @import "../imports/ui/layouts/model-body.scss";
 @import "../imports/ui/components/lcmodel-map.scss";
 @import "../imports/ui/components/lcmodel-show.scss";
 @import "../imports/ui/components/riskmodel-show.scss";
 @import "../imports/ui/components/comps-item.scss";
-@import "../imports/ui/pages/lcmodels-public-page.scss";
-
-
-/*
-.risk-menu {
-  position: fixed;
-  right: 20px;
-  top: 20px;
-  z-index: 888;
-  background-color: #DDDDDD;
-  padding: 5px;
-  width: 400px;
-
-}
-
-*/

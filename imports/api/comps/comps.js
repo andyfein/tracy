@@ -4,7 +4,6 @@ import { Mongo } from 'meteor/mongo';
 //
 
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
-import { LcModels } from '../lcmodels/lcmodels.js';
 
 class CompsCollection extends Mongo.Collection {
   insert(comp) {

@@ -14,7 +14,7 @@ AccountsTemplates.configure({
 	},
   },
   defaultTemplate: 'Auth_page',
-  defaultLayout: 'App_body',
+  defaultLayout: 'List_body',
   defaultContentRegion: 'main',
   defaultLayoutRegions: {},
 });

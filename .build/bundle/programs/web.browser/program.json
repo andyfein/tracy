@@ -1,0 +1,380 @@
+{
+  "format": "web-program-pre1",
+  "manifest": [
+    {
+      "path": "dfba83cf46b48721be7135b76a1edcb57ea68ee3.js",
+      "where": "client",
+      "type": "js",
+      "cacheable": true,
+      "url": "/dfba83cf46b48721be7135b76a1edcb57ea68ee3.js?meteor_js_resource=true",
+      "size": 1361404,
+      "hash": "dfba83cf46b48721be7135b76a1edcb57ea68ee3"
+    },
+    {
+      "path": "ff81c43eab1945013aa4854bb30613868b0e7e56.css",
+      "where": "client",
+      "type": "css",
+      "cacheable": true,
+      "url": "/ff81c43eab1945013aa4854bb30613868b0e7e56.css?meteor_css_resource=true",
+      "size": 114643,
+      "hash": "ff81c43eab1945013aa4854bb30613868b0e7e56"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/material-design-icons/Material-Design-Icons.eot",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/material-design-icons/Material-Design-Icons.eot",
+      "size": 102112,
+      "hash": "fc1bc1337f3313ead42b22a67a142d4e0d356b3a"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/material-design-icons/Material-Design-Icons.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/material-design-icons/Material-Design-Icons.svg",
+      "size": 330095,
+      "hash": "757d54367f0df16a783769eec0ba974f42bd7dce"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/material-design-icons/Material-Design-Icons.ttf",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/material-design-icons/Material-Design-Icons.ttf",
+      "size": 101892,
+      "hash": "2cb66ac73a2d32ae8d2f807f705eff26fcf93323"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/material-design-icons/Material-Design-Icons.woff",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/material-design-icons/Material-Design-Icons.woff",
+      "size": 101968,
+      "hash": "ee77184556f7b66fcb8ee9496f81ac62f792d7dc"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/material-design-icons/Material-Design-Icons.woff2",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/material-design-icons/Material-Design-Icons.woff2",
+      "size": 33220,
+      "hash": "2355cb4f824d070bc42c4ce6b97cab71af1f4ca2"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/material-design-icons/iconfont/MaterialIcons-Regular.eot",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/material-design-icons/iconfont/MaterialIcons-Regular.eot",
+      "size": 137002,
+      "hash": "cc933619f7721bf1c5e30deb50df2ebd30809cd9"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/material-design-icons/iconfont/MaterialIcons-Regular.ttf",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/material-design-icons/iconfont/MaterialIcons-Regular.ttf",
+      "size": 122640,
+      "hash": "3441f2c0e370002a75d9be5e64a346edf474f28e"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/material-design-icons/iconfont/MaterialIcons-Regular.woff",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/material-design-icons/iconfont/MaterialIcons-Regular.woff",
+      "size": 56792,
+      "hash": "448ac5fa421c0e61fada3ff4c63dc2bb72199698"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/material-design-icons/iconfont/MaterialIcons-Regular.woff2",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/material-design-icons/iconfont/MaterialIcons-Regular.woff2",
+      "size": 42284,
+      "hash": "ca9be93b6361611d5c8d50b6b2f80e54ca897243"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/roboto/Roboto-Bold.ttf",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/roboto/Roboto-Bold.ttf",
+      "size": 127744,
+      "hash": "47327df0f35e7cd7c8645874897a7449697544ae"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/roboto/Roboto-Bold.woff",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/roboto/Roboto-Bold.woff",
+      "size": 62876,
+      "hash": "ee99cd87a59a9a5d4092c83232bb3eec67547425"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/roboto/Roboto-Bold.woff2",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/roboto/Roboto-Bold.woff2",
+      "size": 49976,
+      "hash": "933b866d09c2b087707a98dab64b3888865eeb96"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/roboto/Roboto-Light.ttf",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/roboto/Roboto-Light.ttf",
+      "size": 126792,
+      "hash": "e321c183e2b75ee19813892b7bac8d7c411cb88a"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/roboto/Roboto-Light.woff",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/roboto/Roboto-Light.woff",
+      "size": 62316,
+      "hash": "6300f659be9e834ab263efe2fb3c581d48b1e7b2"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/roboto/Roboto-Light.woff2",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/roboto/Roboto-Light.woff2",
+      "size": 49380,
+      "hash": "bbdc28b887400fcb340b504ec2904993af42a5d7"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/roboto/Roboto-Medium.ttf",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/roboto/Roboto-Medium.ttf",
+      "size": 127488,
+      "hash": "6060ca726b9760b76f7c347dce9d2fa1fe42ec92"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/roboto/Roboto-Medium.woff",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/roboto/Roboto-Medium.woff",
+      "size": 62980,
+      "hash": "d45f84922131364989ad6578c7a06b6b4fc22c34"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/roboto/Roboto-Medium.woff2",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/roboto/Roboto-Medium.woff2",
+      "size": 50224,
+      "hash": "6cc1b73571af9e827c4e7e91418f476703cd4c4b"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/roboto/Roboto-Regular.ttf",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/roboto/Roboto-Regular.ttf",
+      "size": 126072,
+      "hash": "824b5480c977a8166e177e5357d13164ccc45f47"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/roboto/Roboto-Regular.woff",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/roboto/Roboto-Regular.woff",
+      "size": 61736,
+      "hash": "74734dde8d94e7268170f9b994dedfbdcb5b3a15"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/roboto/Roboto-Regular.woff2",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/roboto/Roboto-Regular.woff2",
+      "size": 49236,
+      "hash": "ed1558b0541f5e01ce48c7db1588371b990eec19"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/roboto/Roboto-Thin.ttf",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/roboto/Roboto-Thin.ttf",
+      "size": 127584,
+      "hash": "173ed64528b4d010a76d8d38deb1d7e7eed58eda"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/roboto/Roboto-Thin.woff",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/roboto/Roboto-Thin.woff",
+      "size": 61628,
+      "hash": "fbc3e71d456c96667d8082ab910e3946ef89240b"
+    },
+    {
+      "path": "packages/poetic_materialize-scss/dist/font/roboto/Roboto-Thin.woff2",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/packages/poetic_materialize-scss/dist/font/roboto/Roboto-Thin.woff2",
+      "size": 48524,
+      "hash": "2449e3dac5ddb7c3da8bb07450493b62d052758c"
+    },
+    {
+      "path": "app/phoenixlogo.png",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/phoenixlogo.png",
+      "size": 44793,
+      "hash": "5f91d6f52419c452ce44797c7cd3f1459e781c3b"
+    },
+    {
+      "path": "app/tracy.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/tracy.svg",
+      "size": 4975,
+      "hash": "215aaf3145678d6f135179de60fee267801e3de0"
+    },
+    {
+      "path": "app/tracyml/activity-contacted.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/tracyml/activity-contacted.svg",
+      "size": 3482,
+      "hash": "3589737225474caba0c6861320a9c36807fdd7e7"
+    },
+    {
+      "path": "app/tracyml/activity-negotiating.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/tracyml/activity-negotiating.svg",
+      "size": 4030,
+      "hash": "1440544191acd65948223ac995611fc9941e2264"
+    },
+    {
+      "path": "app/tracyml/activity-visited.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/tracyml/activity-visited.svg",
+      "size": 9703,
+      "hash": "1825dccfe23e6eb824fe633c054b82e786095449"
+    },
+    {
+      "path": "app/tracyml/component.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/tracyml/component.svg",
+      "size": 423,
+      "hash": "1e9fea713399cad5692b6724b921878f2da71207"
+    },
+    {
+      "path": "app/tracyml/risk-cl.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/tracyml/risk-cl.svg",
+      "size": 2530,
+      "hash": "c8d0e85765636b5001ab494f6d5fa3e281e74c0a"
+    },
+    {
+      "path": "app/tracyml/risk-eo.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/tracyml/risk-eo.svg",
+      "size": 3952,
+      "hash": "d63a4deb10ac62ccf6597251e27e7503c6b4f2ef"
+    },
+    {
+      "path": "app/tracyml/risk-fa.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/tracyml/risk-fa.svg",
+      "size": 4349,
+      "hash": "654756968358215624d5868f511bafa07a30d3da"
+    },
+    {
+      "path": "app/tracyml/risk-fl.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/tracyml/risk-fl.svg",
+      "size": 4018,
+      "hash": "15d87ea8da2e976564d397388514e8411aafc7c9"
+    },
+    {
+      "path": "app/tracyml/risk-fs.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/tracyml/risk-fs.svg",
+      "size": 3134,
+      "hash": "1b2953d3744a0f4c4d9fb515c1c81a76873c026c"
+    },
+    {
+      "path": "app/tracyml/risk-hs.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/tracyml/risk-hs.svg",
+      "size": 3124,
+      "hash": "e91b42778b7bcfa689dadf776292c6f1ea5fa7bc"
+    },
+    {
+      "path": "app/tracyml/risk-s.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/tracyml/risk-s.svg",
+      "size": 2834,
+      "hash": "9a517e635ce23a8701c498b25214e0e0c76d32d0"
+    },
+    {
+      "path": "app/tracyml/risk-sb.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/tracyml/risk-sb.svg",
+      "size": 3303,
+      "hash": "19f65e2fa5b0e6828b6fb5ce114a639f819f72b4"
+    },
+    {
+      "path": "app/tracyml/risk-wh.svg",
+      "where": "client",
+      "type": "asset",
+      "cacheable": false,
+      "url": "/tracyml/risk-wh.svg",
+      "size": 2929,
+      "hash": "65c83acbd546840c927bd85171d063faf2c7cf41"
+    },
+    {
+      "path": "head.html",
+      "where": "internal",
+      "type": "head",
+      "hash": "c3275d566ea6b23bdaa6674a0df985a923484c48"
+    }
+  ]
+}

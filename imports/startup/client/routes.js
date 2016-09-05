@@ -3,16 +3,18 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import { AccountsTemplates } from 'meteor/useraccounts:core';
 
 // Import to load these templates
-import '../../ui/layouts/app-body.js';
+import '../../ui/layouts/list-body.js';
+import '../../ui/pages/list-explore-page.js';
+import '../../ui/pages/list-lcmodels-page.js';
+import '../../ui/pages/list-riskmodels-page.js';
+
 import '../../ui/layouts/public-body.js';
+
+
 import '../../ui/layouts/model-body.js';
-//import '../../ui/pages/root-redirector.js';
 
 import '../../ui/pages/lcmodel-public-page.js';
-import '../../ui/pages/lcmodels-public-page.js';
-import '../../ui/pages/riskmodels-show-page.js';
 import '../../ui/pages/riskmodel-modeler-page.js';
-import '../../ui/pages/lcmodels-show-page.js';
 import '../../ui/pages/lcmodel-modeler-page.js';
 import '../../ui/pages/lcmodel-map-page.js';
 import '../../ui/pages/regions-show-page.js';
@@ -21,22 +23,19 @@ import '../../ui/pages/app-not-found.js';
 // override accounts templates
 import '../../ui/accounts/accounts-templates.js';
 
-//FlowRouter.route('/modeler/:_id', {
-//FlowRouter.route('/modeler', {
-//  name: 'Main.Modeler',
-//  action() {
-//	BlazeLayout.render('Main_body', { main: 'Main_modeler'});
-//  },
-//});
-//
-// Protect content
-//FlowRouter.triggers.enter([AccountsTemplates.ensureSignedIn]);
+FlowRouter.route('/', {
+  name: 'App.home',
+  action() {
+    BlazeLayout.render('List_body', { main: 'List_explore_page'});
+  },
+});
+
 
 FlowRouter.route('/lcmodels/', {
   triggersEnter: [AccountsTemplates.ensureSignedIn],
-  name: 'LcModels.show',
+  name: 'LcModels',
   action() {
-	BlazeLayout.render('App_body', { main: 'LcModels_show_page' });
+	BlazeLayout.render('List_body', { main: 'List_lcmodels_page' });
   }
 });
 
@@ -77,7 +76,7 @@ FlowRouter.route('/riskmodels/', {
   triggersEnter: [AccountsTemplates.ensureSignedIn],
   name: 'RiskModels.show',
   action() {
-	BlazeLayout.render('App_body', { main: 'RiskModels_show_page' });
+	BlazeLayout.render('List_body', { main: 'RiskModels_show_page' });
   }
 }); 
 
@@ -93,21 +92,15 @@ FlowRouter.route('/regions/', {
   triggersEnter: [AccountsTemplates.ensureSignedIn],
   name: 'Regions.show',
   action() {
-	BlazeLayout.render('App_body', { main: 'Regions_show_page' });
+	BlazeLayout.render('List_body', { main: 'Regions_show_page' });
   }
 }); 
 
-FlowRouter.route('/', {
-  name: 'App.home',
-  action() {
-	BlazeLayout.render('App_body', { main: 'LcModels_public_page'});
-  },
-});
 
 // unknown routes
 FlowRouter.notFound = {
   action() {
-	BlazeLayout.render('App_body', { main: 'App_notFound'});
+	BlazeLayout.render('List_body', { main: 'App_notFound'});
   },
 };
 
