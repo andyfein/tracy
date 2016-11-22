@@ -37,12 +37,15 @@ Connects.schema = new SimpleSchema({
 	type: String,
 	regEx: SimpleSchema.RegEx.Id,
   },
+  isRetracted: {
+	type: Boolean
+  }
 });
 
 Connects.attachSchema(Connects.schema);
 
 Connects.publicFields = {
-  lcmodelId: 1,
+  lcModelId: 1,
   parentCompId: 1,
   childCompId: 1,
 };

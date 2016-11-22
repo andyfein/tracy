@@ -1,0 +1,31 @@
+<template name="List_explore">
+<div class="row model-list-headline">
+  <div class="col l9 s12">
+	<h2 class="left">Explore Life Cycle Models</h2>
+  </div>
+  {{#unless currentUser}}
+  <div class="col l3 s12">
+	<div class="valign-wrapper right">
+	  <a href="{{pathFor 'join'}}" class="waves-effect waves-light btn teal darken-3 valign">Join</a>
+	  <a href="{{pathFor 'signin'}}" class="waves-effect waves-light btn teal darken-3 valign sign-in-button">Sign In</a>
+	</div>
+
+  </div>
+  {{/unless}}
+</div>
+<div class="row">
+  {{#each lcModel in lcModels}}
+  <div class="col s12 m6">
+	<div class="card">
+	  <div class="card-content ">
+		<span class="card-title">{{lcModel.name}}</span>
+		<p>{{lcModel.riskModel.name}}</p>
+	  </div>
+	  <div class="card-action">
+		<a href="{{pathFor 'Explore.lcModel' lcModelId=lcModel._id}}" target="_blank" class="teal-text darken-4">Explore</a>
+	  </div>
+	</div>
+  </div>
+  {{/each}}
+</div>
+</template>

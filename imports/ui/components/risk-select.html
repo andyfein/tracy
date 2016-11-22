@@ -1,0 +1,23 @@
+<template name="Risk_select">
+<div class="risk-view">
+  <div class="input-field">
+	<select class="js-select-risk icons">
+	  <optgroup label="aggregated">
+		<option value="s" data-icon="/tracyml/risk-s.svg" class="left circle" selected>{{riskModel.name}}</option>
+	  </optgroup>
+	  <optgroup label="single values">
+	  <option value="cl" data-icon="/tracyml/risk-cl.svg" class="left circle">Child Labour</option>
+	  <option value="eo" data-icon="/tracyml/risk-eo.svg" class="left circle">Equal Opportunities</option>
+	  <option value="fa" data-icon="/tracyml/risk-fa.svg" class="left circle">Freedom of Association</option>
+	  <option value="fl" data-icon="/tracyml/risk-fl.svg" class="left circle">Forced Labour</option>
+	  <option value="fs" data-icon="/tracyml/risk-fs.svg" class="left circle">Fair Salary</option>
+	  <option value="sb" data-icon="/tracyml/risk-sb.svg" class="left circle">Social Security</option>
+	  <option value="wh" data-icon="/tracyml/risk-wh.svg" class="left circle">Working Hours</option>
+	  <option value="hs" data-icon="/tracyml/risk-hs.svg" class="left circle">Health and Safety</option>
+	  </optgroup>
+	</select>
+	<label>Risk View</label>
+  </div>
+</div>
+
+</template>

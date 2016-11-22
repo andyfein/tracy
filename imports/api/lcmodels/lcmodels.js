@@ -4,6 +4,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 //
 import { Comps } from '../comps/comps.js';
 import { Connects } from '../connects/connects.js';
+import { RiskModels } from '../riskmodels/riskmodels.js';
 
 class LcModelsCollection extends Mongo.Collection {
   insert(lcmodel, callback) {
@@ -46,26 +47,13 @@ LcModels.publicFields = {
 //Factory.define('list', Lists, {});
 
 LcModels.helpers({
-  // A list is considered to be private if it has a userId set
-//  isPrivate() {
-//	return !!this.userId;
-//  },
-//  isLastPublicList() {
-//	const publicListCount = Lists.find({ userId: { $exists: false } }).count();
-//	return !this.isPrivate() && publicListCount === 1;
-//  },
-//  editableBy(userId) {
-//	if (!this.userId) {
-//	  return true;
-//	}
-//
-//	return this.userId === userId;
-//  },
-  
+  riskModel() {
+	return RiskModels.findOne({ _id: this.riskModelId});
+  },
   comps() {
-	return Comps.find({ lcmodelId: this._id });
+	return Comps.find({ lcmodelId: this._id, isRetracted: false });
   },
   connects() {
-	return Connects.find({ lcmodelId: this._id });
+	return Connects.find({ lcmodelId: this._id, isRetracted: false });
   },
 });

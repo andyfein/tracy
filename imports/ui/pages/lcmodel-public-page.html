@@ -1,9 +1,0 @@
-<template name="LcModel_public_page">
-{{#if lcmodelIdArray}}
-  {{#each lcmodelId in lcmodelIdArray}}
-	{{> LcModel_public (lcmodelArgs lcmodelId)}}
-  {{/each}}
-{{else}}
-modelID not found
-{{/if}}
-</template>

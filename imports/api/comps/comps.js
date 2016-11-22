@@ -1,9 +1,12 @@
 import { Mongo } from 'meteor/mongo';
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+
+import { Regions } from '../regions/regions.js';
+
 //import { Factory }
 //import faker
 //
 
-import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 
 class CompsCollection extends Mongo.Collection {
   insert(comp) {
@@ -58,6 +61,12 @@ Comps.schema = new SimpleSchema({
   y: {
 	type: Number,
   },
+  isRetracted: {
+	type: Boolean,
+  },
+  hasRetracted: {
+	type: Boolean,
+  }
 });
 
 Comps.attachSchema(Comps.schema);
@@ -72,5 +81,7 @@ Comps.publicFields = {
 };
 
 Comps.helpers({
-  // for some reasons needed in comps-item.js SimpleSchema -> Comps._helpers
+  region() {
+	return Regions.findOne({ _id: this.siteLocation });
+  },
 });

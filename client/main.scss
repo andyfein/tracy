@@ -10,10 +10,12 @@
 
 // import 
 @import "../imports/ui/layouts/list-body.scss";
+@import "../imports/ui/layouts/show-body.scss";
+
 @import "../imports/ui/pages/list-explore-page.scss";
 
-@import "../imports/ui/layouts/model-body.scss";
-@import "../imports/ui/components/lcmodel-map.scss";
-@import "../imports/ui/components/lcmodel-show.scss";
-@import "../imports/ui/components/riskmodel-show.scss";
-@import "../imports/ui/components/comps-item.scss";
+@import "../imports/ui/components/explore/explore-map.scss";
+@import "../imports/ui/components/lcmodels/show-lcmodel.scss";
+@import "../imports/ui/components/lcmodels/comps-item.scss";
+@import "../imports/ui/components/riskmodels/show-riskmodel.scss";
+@import "../imports/ui/components/legend.scss";

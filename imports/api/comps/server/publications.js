@@ -12,8 +12,6 @@ Meteor.publishComposite('comps.inLcModel', function compsInLcModel(lcmodelId) {
 	lcmodelId: { type: String },
   }).validate({ lcmodelId });
 
-  const userId = this.userId;
-
   return {
 	find() {
 	  const query = {

@@ -1,59 +1,37 @@
-//TODO launch screen?
-
-import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { $ } from 'meteor/jquery';
-
-import './list-lcmodels-page.html';
 
 import { LcModels } from '../../api/lcmodels/lcmodels.js';
 import { RiskModels } from '../../api/riskmodels/riskmodels.js';
 
-import { insert } from '../../api/lcmodels/methods.js';
+import { renderHold } from '../launch-screen.js';
+import './list-lcmodels-page.html';
 
-//Components
-import '../components/lcmodels-item.js';
-
-//TODO Connection error handling
+import '../components/lcmodels/list-lcmodels.js';
 
 Template.List_lcmodels_page.onCreated(function listLcModelsPageOnCreated() {
-   //this.subscribe('lcmodels.public');
-   //this.subscribe('lcmodels.private');
-   this.subscribe('lcmodels');
-   this.subscribe('riskmodels.public');
-   this.subscribe('riskmodels.private');
+  this.autorun(() => {
+	this.subscribe('lcModels');
+	this.subscribe('riskModels');
+  });
 });
 
 Template.List_lcmodels_page.onRendered(function listLcModelsPageOnRendered() {
-  $('select').material_select();
+  this.autorun(() => {
+	if (this.subscriptionsReady()) {
+	  renderHold.release();
+	}
+  });
 });
 
 Template.List_lcmodels_page.helpers({
-  lcmodels() {
-	return LcModels.find({userId: Meteor.userId()});
+  subsReady() {
+	return Template.instance().subscriptionsReady();
   },
-  riskmodels() {
-	return RiskModels.find({userId: Meteor.userId()});
+  listArgs() {
+	return {
+	  lcModels: LcModels.find({}),
+	  riskModels: RiskModels.find({}),
+	}
   }
-});
 
-Template.List_lcmodels_page.events({
-  'click .js-new-lcmodel'() {
-	//Materialize.updateTextFields();
-	$('#modal-new-lcmodel').openModal();
-  },
-  'click .js-create-new-lcmodel'() {
-	const name = $('#lcmodel-name').val().trim();
-	const riskModelId = $('#riskmodel-id').val();
-	insert.call({
-	name: name,
-	riskModelId: riskModelId,
-	userId: Meteor.userId(),
-	});
-
-	$('#modal-new-lcmodel').closeModal();
-  },
-  'click .js-cancel-new-lcmodel'() {
-	$('#modal-new-lcmodel').closeModal();
-  },
 });

@@ -8,7 +8,7 @@ import { LcModels } from './lcmodels.js';
 import { Comps } from '../comps/comps.js';
 
 const LCMODEL_ID_ONLY = new SimpleSchema({
-  lcmodelId: LcModels.simpleSchema().schema('_id'),
+  lcModelId: LcModels.simpleSchema().schema('_id'),
 }).validator({ clean: true, filter: false });
 
 export const insert = new ValidatedMethod({
@@ -103,7 +103,7 @@ export const insert = new ValidatedMethod({
 export const remove = new ValidatedMethod({
   name: 'lcmodels.remove',
   validate: LCMODEL_ID_ONLY,
-  run({ lcmodelId }) {
+  run({ lcModelId }) {
 //    const list = Lists.findOne(listId);
 //
 //    if (!list.editableBy(this.userId)) {
@@ -119,7 +119,7 @@ export const remove = new ValidatedMethod({
 //        'Cannot delete the last public list.');
 //    }
 
-    LcModels.remove(lcmodelId);
+    LcModels.remove(lcModelId);
   },
 });
 

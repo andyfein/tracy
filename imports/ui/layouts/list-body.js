@@ -4,8 +4,6 @@ import { $ } from 'meteor/jquery';
 
 import './list-body.html';
 
-import '../components/loading.js';
-
 Template.List_body.onRendered(function appBodyOnRendered() { 
   // init side navigation for mobile screens
   $('.button-collapse').sideNav();

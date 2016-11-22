@@ -1,0 +1,50 @@
+.component.show {
+  cursor: grab;
+}
+
+.component rect {
+  stroke: #212121;
+}
+
+.risk-low {
+  fill: #ffcdd2;
+}
+
+.risk-medium {
+  fill: #ef5350;
+}
+
+.risk-high {
+  fill: #b71c1c;
+}
+
+.risk-unknown {
+  fill: #b6b6b6;
+}
+
+.component text.unknown {
+  font-size: 56px;
+}
+
+.component text.name {
+  fill: #212121;
+  font-size: 24px;
+}
+
+.component text.firmName {
+  fill: #727272;
+  font-size: 18px;
+}
+.component text.siteLocation {
+  fill: #727272;
+  font-size: 18px;
+}
+
+.action {
+  fill: #26a69a;
+  cursor: pointer;
+}
+
+.action.hidden {
+	display: none;
+  }

@@ -13,10 +13,16 @@
 	"import",
 	"meteor"
   ],
+  "env": {
+	"browser": true
+  },
   "rules": {
 	"import/no-extraneous-dependencies": "off",
+	"import/prefer-default-export": "off",
+	"no-mixed-spaces-and-tabs": "off",
 	"import/no-unresolved": "off",
     "meteor/template-names": "off",
+    "meteor/no-session": "off",
 	"no-array-constructor": "warn"
   }
 }

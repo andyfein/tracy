@@ -1,0 +1,17 @@
+<template name="Explore_comp_item">
+<g class="component" transform="{{transform}}">
+  <rect
+  width="{{width}}"
+  height="{{height}}"
+  class="{{risk}}"
+  style="fill-opacity:1;stroke-width:2;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+  {{#if isUnknown}}
+  <text class="name" x="5" y="22">{{comp.name}}</text>
+  <text class="firmName" x="5" y="48">{{#if comp.firmName}}{{comp.firmName}}{{else}}unknown{{/if}}</text>
+  <text class="siteLocation" x="5" y="66">{{locationName comp.siteLocation}}</text>
+  {{else}}
+
+  <text class="name" x="85" y="66">...</text>
+  {{/if}}
+</g>
+</template>

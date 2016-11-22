@@ -5,7 +5,6 @@ import { DDPRateLimiter } from 'meteor/ddp-rate-limiter';
 import { _ } from 'meteor/underscore';
 
 import { RiskModels } from './riskmodels.js';
-import { Regions } from '../regions/regions.js';
 
 const RISKMODEL_ID_ONLY = new SimpleSchema({
   riskmodelId: RiskModels.simpleSchema().schema('_id'),
@@ -36,7 +35,7 @@ export const deleteEntry = new ValidatedMethod({
   name: 'riskmodels.deleteEntry',
   validate: new SimpleSchema({
 	riskmodelId: RiskModels.simpleSchema().schema('_id'),
-	regionId: Regions.simpleSchema().schema('_id'),
+	regionId: { type: String },
   }).validator({ clean: true, filter: false }),
   run({ riskmodelId, regionId }) {
 	RiskModels.update(riskmodelId, {

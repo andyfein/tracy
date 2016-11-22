@@ -3,22 +3,14 @@ import { Meteor } from 'meteor/meteor';
 import { RiskModels } from '../riskmodels.js';
 
 //Todo public, private
-Meteor.publish('riskmodels.public', function riskModelsPublic() {
-  return RiskModels.find({ 
-	userId: { $exists: false },
-  }, {
-	fields: RiskModels.publicFields,
-  });
+Meteor.publish('riskModels', function riskModelsPublic() {
+  return RiskModels.find({});
 });
 
-Meteor.publish('riskmodels.private', function lcmodelsPrivate() {
-  if (!this.userId) {
-    return this.ready();
+Meteor.publishComposite('riskModelById', function riskModelById(riskModelId) {
+  return {
+	find() {
+	  return RiskModels.find({_id: riskModelId});
+	}
   }
-
-  return RiskModels.find({
-    userId: this.userId,
-  }, {
-    fields: RiskModels.publicFields,
-  });
 });

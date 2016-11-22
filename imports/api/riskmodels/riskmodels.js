@@ -30,7 +30,7 @@ RiskModels.deny({
 });
 
 RiskModels.entrySchema = new SimpleSchema({
-  regionId: { type: String, regEx: SimpleSchema.RegEx.Id },
+  regionId: { type: String },
   cl: { type: Number, min: -1, max: 2 },
   eo: { type: Number, min: -1, max: 2 },
   fa: { type: Number, min: -1, max: 2 },

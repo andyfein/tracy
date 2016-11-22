@@ -1,9 +1,0 @@
-<template name="LcModel_map_page">
-{{#if lcmodelIdArray}}
-  {{#each lcmodelId in lcmodelIdArray}}
-	{{> LcModel_map (lcmodelArgs lcmodelId)}}
-  {{/each}}
-{{else}}
-modelID not found
-{{/if}}
-</template>

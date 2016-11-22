@@ -1,0 +1,36 @@
+<template name="Show_lcmodel">
+<svg class="canvas">
+  <defs>
+  <path id="ic_delete" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+  <path id="ic_edit" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+  <path id="ic_arrow_down" d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"/>
+  <path id="ic_arrow_up" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+
+  <marker id="arrow" markerWidth="10" markerHeight="10" refx="0" refy="3" orient="270" markerUnits="strokeWidth" viewBox="0 0 20 20">
+  <path d="M0,0 L0,6 L9,3 z" />
+  </marker>
+
+  </defs>
+  <g class="js-zoom-pan" style="{{transform}}">
+  <polyline id="temporary-connector" class="connector-line" stroke-dasharray="5,5" marker-start="url(#arrow)"/>
+  {{> Comps_shadow (shadowArgs)}}
+
+  {{#each connect in connects}}
+  {{> Connect_item (connectArgs connect)}}
+  {{/each}}
+  {{#each comp in comps}}
+  {{> Comps_item (compArgs comp)}}
+  {{/each}}
+
+  </g>
+</svg>
+
+<!--<circle r="50" cx="{{mouseFollowerX}}" cy="{{mouseFollowerY}}"></circle>-->
+
+{{> Risk_select}}
+
+{{> Legend}}
+
+{{> Modal_editcomp (editArgs)}}
+
+</template>

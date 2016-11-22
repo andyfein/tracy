@@ -11,16 +11,16 @@
 
 		  <ul class="right hide-on-med-and-down">
 			{{#if currentUser}}
-			<li class="{{isActiveRoute 'LcModels.show'}}"><a href="{{pathFor 'LcModels.show'}}"><i class="material-icons left">loop</i>Life Cycle Models</a></li>
-			<li class="{{isActiveRoute 'RiskModels.show'}}"><a href="{{pathFor 'RiskModels.show'}}"><i class="material-icons left">warning</i>Risk Models</a></li>
+			<li class="{{isActiveRoute 'LcModels'}}"><a href="{{pathFor 'LcModels'}}"><i class="material-icons left">loop</i>Life Cycle Models</a></li>
+			<li class="{{isActiveRoute 'RiskModels'}}"><a href="{{pathFor 'RiskModels'}}"><i class="material-icons left">warning</i>Risk Models</a></li>
 			{{/if}}
 			<li><a href="#" class="dropdown-button" data-activates="user-dropdown"><i class="material-icons">more_vert</i></a></li>
 		  </ul>
 
 		  <ul id="nav-mobile" class="side-nav">
 			{{#if currentUser}}
-			<li class="{{isActiveRoute 'LcModels.show'}}"><a href="{{pathFor 'LcModels.show'}}"><i class="material-icons left">loop</i>Life Cycle Models</a></li>
-			<li class="{{isActiveRoute 'RiskModels.show'}}"><a href="{{pathFor 'RiskModels.show'}}"><i class="material-icons left">warning</i>Risk Models</a></li>
+			<li class="{{isActiveRoute 'LcModels'}}"><a href="{{pathFor 'LcModels'}}"><i class="material-icons left">loop</i>Life Cycle Models</a></li>
+			<li class="{{isActiveRoute 'RiskModels'}}"><a href="{{pathFor 'RiskModels'}}"><i class="material-icons left">warning</i>Risk Models</a></li>
 			<li class="divider"></li>
 			<li><a class="js-logout">Logout</a></li>
 			{{else}}
@@ -40,17 +40,12 @@
 		<li><a href="{{pathFor 'join'}}">Join</a></li>
 		{{/if}}
 	  </ul>
-
 	</div>
   </header>
 
   <main>
   <div class="container">
-	{{#if Template.subscriptionsReady}}
 	{{> Template.dynamic template=main}}
-	{{else}}
-	{{> App_loading}}
-	{{/if}}
   </div>
   </main>
 

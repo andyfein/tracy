@@ -43,7 +43,6 @@ export const updateInfo = new ValidatedMethod({
   }).validator({ clean: false, filter: false }),
   run( { compId, name, firmName, siteLocation } ) {
 	//TODO validate
-	console.log("Server: " + siteLocation);
 	Comps.update(compId, {
 	  $set: { name, firmName, siteLocation },
 	});
@@ -75,10 +74,30 @@ export const remove = new ValidatedMethod({
   },
 });
 
+export const toggleRetract = new ValidatedMethod({
+  name: 'comps.toggleRetract',
+  validate: new SimpleSchema({ compId: Comps.simpleSchema().schema('_id'), }).validator({ clean: true, filter: false }),
+  run({ compId }) {
+	let initialComp = Comps.findOne({_id: compId});
+	let retractState = initialComp.hasRetracted;
+	Comps.update(compId, {$set: {hasRetracted: !retractState}});
+	retractChildren(compId);
+	function retractChildren(parentCompId) {
+	  let connects = Connects.find({ parentCompId: parentCompId });	
+	  connects.forEach(function(connect) {
+		Connects.update({childCompId: connect.childCompId}, {$set: {isRetracted: !retractState}})
+		Comps.update(connect.childCompId, {$set: { isRetracted: !retractState, hasRetracted: false }})
+		retractChildren(connect.childCompId);
+	  });
+	}
+  }
+});
+
 const COMPS_METHODS = _.pluck([
   insert,
   updateInfo,
   updatePosition,
+  toggleRetract,
   remove,
 ], 'name');
 

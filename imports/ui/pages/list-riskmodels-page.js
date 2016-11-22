@@ -1,40 +1,34 @@
-import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
-import { $ } from 'meteor/jquery';
 
 import './list-riskmodels-page.html';
 
 import { RiskModels } from '../../api/riskmodels/riskmodels.js';
 
-import { insert } from '../../api/riskmodels/methods.js';
+import { renderHold } from '../launch-screen.js';
 
-import '../components/riskmodels-item.js';
+import '../components/riskmodels/list-riskmodels.js';
 
 Template.List_riskmodels_page.onCreated(function listRiskModelsPageOnCreated() {
-  this.subscribe('riskmodels.public');
-  this.subscribe('riskmodels.private');
+  this.autorun(() => {
+	this.subscribe('riskModels');
+  });
+});
+Template.List_riskmodels_page.onRendered(function listRiskModelsPageOnRendered() {
+  this.autorun(() => {
+	if (this.subscriptionsReady()) {
+	  renderHold.release();
+	}
+  });
 });
 
 Template.List_riskmodels_page.helpers({
-  riskmodels() {
-	return RiskModels.find({userId: Meteor.userId()});
+  subsReady() {
+	return Template.instance().subscriptionsReady();
   },
-});
+  listArgs() {
+	return {
+	  riskModels: RiskModels.find({}),
+	}
+  }
 
-Template.List_riskmodels_page.events({
-  'click .js-new-riskmodel'() {
-	$('#modal-new-riskmodel').openModal();
-  },
-  'click .js-create-new-riskmodel'() {
-	const name = $('#riskmodel-name').val().trim();
-	insert.call({
-	name: name,
-	userId: Meteor.userId(),
-	});
-
-	$('#modal-new-riskmodel').closeModal();
-  },
-  'click .js-cancel-new-riskmodel'() {
-	$('#modal-new-riskmodel').closeModal();
-  },
 });
