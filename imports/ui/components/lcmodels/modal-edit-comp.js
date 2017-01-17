@@ -19,12 +19,19 @@ Template.Modal_editcomp.helpers({
 	return countryArray;
   },
   selected(regionId) {
-	if(!Template.currentData().editComp)
+	if(!Template.currentData().editComp) {
 	  return;
+	}
 	if (Template.currentData().editComp.siteLocation === regionId) {
 	  $('select').material_select();
 	  return 'selected';
 	}
+  },
+  checked(activity) {
+	if(!Template.currentData().editComp) {
+	  return;
+	}
+	return activity ? 'checked' : '';
   }
 });
 
@@ -33,18 +40,29 @@ Template.Modal_editcomp.events({
 	const name = $('#comp-name').val().trim();
 	const firmName = $('#comp-firmname').val().trim();
 	const siteLocation = $('#comp-sitelocation').val();
+	const contacted = $('#activity-contacted').prop('checked');
+	const visited = $('#activity-visited').prop('checked');
+	const negotiating = $('#activity-negotiating').prop('checked');
 
 	updateInfo.call({
 	  compId: this.editComp._id,
 	  name: name,
 	  firmName: firmName,
 	  siteLocation: siteLocation,
+	  contacted: contacted,
+	  visited: visited,
+	  negotiating: negotiating,
 	});
 	$('#modal-edit-comp').closeModal();
 	$('#comp-name').val("");
 	$('#comp-firmname').val("");
 	$('#comp-sitelocation').val("");
 	$('#comp-sitelocation').material_select();
+	$('#activity-contacted').prop('checked', false);
+	$('#activity-visited').prop('checked', false);
+	$('#activity-negotiating').prop('checked', false);
+
+	this.state.set('editComp', null);
 	Materialize.updateTextFields();
   },
   'click .js-cancel-edit-comp'() {
@@ -53,8 +71,11 @@ Template.Modal_editcomp.events({
 	$('#comp-firmname').val("");
 	$('#comp-sitelocation').val("");
 	$('#comp-sitelocation').material_select();
-	Materialize.updateTextFields();
+	$('#activity-contacted').prop('checked', false);
+	$('#activity-visited').prop('checked', false);
+	$('#activity-negotiating').prop('checked', false);
 
+	this.state.set('editComp', null);
 	Materialize.updateTextFields();
   },
 

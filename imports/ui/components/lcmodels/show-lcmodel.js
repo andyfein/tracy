@@ -2,11 +2,13 @@
 import { Template } from 'meteor/templating';
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { Session } from 'meteor/session';
 import { ReactiveDict } from 'meteor/reactive-dict';
 import { $ } from 'meteor/jquery';
 
 import './show-lcmodel.html';
 
+import { LcModelTreeEditable } from '../lcmodel-editable.js';
 import '../legend.html';
 import '../risk-select.js';
 
@@ -17,13 +19,6 @@ import './connect-item.js';
 
 import { RiskModels } from '../../../api/riskmodels/riskmodels.js';
 
-import {
-  insert, 
-} from '../../../api/comps/methods.js';
-
-import {
-  connect,
-} from '../../../api/connects/methods.js';
 
 Template.Show_lcmodel.onCreated(function showLcModelOnCreated() {
   this.autorun(() => {
@@ -121,6 +116,33 @@ Template.Show_lcmodel.onRendered(function lcmodelShowOnRendered() {
 	initY = this.state.get('compHeight');
   this.state.set('currentPanX', initX); 
   this.state.set('currentPanY', initY); 
+
+  let lcModel;
+  lcModel = new LcModelTreeEditable('#lcmodel-canvas', Template.currentData().riskModel, Template.currentData().lcModelId, this);
+  Template.currentData().comps.observe({
+	added: function(doc) {
+	  lcModel.addComp(doc);
+	},
+	changed: function(doc) {
+	  lcModel.updateComp(doc);
+	},
+	removed: function(doc) {
+	  lcModel.removeComp(doc);
+	}
+  });
+  Template.currentData().connects.observe({
+	added: function(doc) {
+	  lcModel.addConnect(doc);
+	},
+	// TODO removed etc
+  });
+  this.autorun(() => {
+	if(Session.get('selectedRisk')) {
+	  lcModel.updateRisks();
+	}
+	
+  });
+
 });
 
 Template.Show_lcmodel.helpers({
@@ -165,8 +187,10 @@ Template.Show_lcmodel.helpers({
   },
   editArgs() {
 	const state = Template.instance().state;
+	console.log(state.get('editComp'));
 	return {
 	  editComp: state.get('editComp'),
+	  state: state,
 	}
   },
   shadowArgs() {
@@ -208,99 +232,99 @@ Template.Show_lcmodel.helpers({
 });
 
 Template.Show_lcmodel.events({
-  'mousedown .canvas'(event, templateInstance) {
-	if(event.button != 0) return;
-	event.preventDefault();
-	const state = templateInstance.state;
-
-	state.set('panning', true);
-	state.set('oldMouseX', event.pageX);
-	state.set('oldMouseY', event.pageY);
-  },
-  'mousemove'(event, templateInstance) {
-	const state = templateInstance.state;
-
-	//tracking mouse for moving components -> TODO performance optimization?
-	state.set('currentMoveX', (event.pageX - state.get('currentPanX'))/state.get('currentScale'));
-	state.set('currentMoveY', (event.pageY - state.get('currentPanY'))/state.get('currentScale'));
-
-	if(state.get('panning')) {
-	  const newMouseX = event.pageX,
-		newMouseY = event.pageY;
-	  const diffPanX = newMouseX - state.get('oldMouseX'),
-		diffPanY = newMouseY - state.get('oldMouseY');
-	  state.set('oldMouseX', newMouseX);
-	  state.set('oldMouseY', newMouseY);
-	  state.set('currentPanX', state.get('currentPanX') + diffPanX);
-	  state.set('currentPanY', state.get('currentPanY') + diffPanY);
-	} else if(state.get('connectingComp')) {
-	  const parentComp = state.get('parentComp');
-	  templateInstance.drawTemporaryConnector(parentComp.x, parentComp.y);
-	}
-  },
-  'mouseup'(event, templateInstance) {
-	const state = templateInstance.state;
-
-	if(state.get('panning')) {
-	  state.set('panning', false);
-	  state.set('lastPanX', state.get('currentPanX'));
-	  state.set('lastPanY', state.get('currentPanY'));
-	} else if (state.get('movingComp')) {
-	  state.set('movingComp', false);
-	} else if (state.get('connectingComp')) {
-
-	  if(state.get('childComp')) {
-		connect.call({
-		  //TODO ... change to lcModelId ... has some consequences..
-		  lcmodelId: templateInstance.data.lcModelId,
-		  parentCompId: state.get('parentComp')._id,
-		  childCompId: state.get('childComp')._id,
-		});
-
-	  } else {
-		insert.call({
-		  lcmodelId: templateInstance.data.lcModelId,
-		  //parentCompId: state.get('parentComp')._id,
-		  x: Number(templateInstance.gridX()),
-		  y: Number(templateInstance.gridY()),
-		}, (error, result) => {
-		  connect.call({
-			lcmodelId: templateInstance.data.lcModelId,
-			parentCompId: state.get('parentComp')._id,
-			childCompId: result,
-		  });
-		});
-	  }
-
-
-	  state.set('connectingComp', false);
-	  $('#temporary-connector').attr('points', '');
-	}
-  },
-  'click .js-edit-comp'(event, templateInstance) {
-	const state = templateInstance.state;
-	// in this case "this" refers to a Comps_item templateInstance
-	// TODO -> better in comps-item.js?
-	state.set('editComp', this.comp);
-	$('#modal-edit-comp').openModal();
-
-	$('#comp-sitelocation').material_select();
-	Materialize.updateTextFields();
-  },
-  'change .js-select-risk'(event, templateInstance) {
-	const  state = templateInstance.state;
-
-	state.set('selectedValue', $(event.target).val());
-  },
-  'wheel svg'(event, templateInstance) {
-	const state = templateInstance.state;
-	const direction = event.originalEvent.deltaY;
-
-	if (direction > 0) {
-	  state.set('currentScale', state.get('currentScale') - 0.1);
-	} else if (direction < 0) {
-	  state.set('currentScale', state.get('currentScale') + 0.1);
-	}
-  },
-
+//  'mousedown .canvas'(event, templateInstance) {
+//	if(event.button != 0) return;
+//	event.preventDefault();
+//	const state = templateInstance.state;
+//
+//	state.set('panning', true);
+//	state.set('oldMouseX', event.pageX);
+//	state.set('oldMouseY', event.pageY);
+//  },
+//  'mousemove'(event, templateInstance) {
+//	const state = templateInstance.state;
+//
+//	//tracking mouse for moving components -> TODO performance optimization?
+//	state.set('currentMoveX', (event.pageX - state.get('currentPanX'))/state.get('currentScale'));
+//	state.set('currentMoveY', (event.pageY - state.get('currentPanY'))/state.get('currentScale'));
+//
+//	if(state.get('panning')) {
+//	  const newMouseX = event.pageX,
+//		newMouseY = event.pageY;
+//	  const diffPanX = newMouseX - state.get('oldMouseX'),
+//		diffPanY = newMouseY - state.get('oldMouseY');
+//	  state.set('oldMouseX', newMouseX);
+//	  state.set('oldMouseY', newMouseY);
+//	  state.set('currentPanX', state.get('currentPanX') + diffPanX);
+//	  state.set('currentPanY', state.get('currentPanY') + diffPanY);
+//	} else if(state.get('connectingComp')) {
+//	  const parentComp = state.get('parentComp');
+//	  templateInstance.drawTemporaryConnector(parentComp.x, parentComp.y);
+//	}
+//  },
+//  'mouseup'(event, templateInstance) {
+//	const state = templateInstance.state;
+//
+//	if(state.get('panning')) {
+//	  state.set('panning', false);
+//	  state.set('lastPanX', state.get('currentPanX'));
+//	  state.set('lastPanY', state.get('currentPanY'));
+//	} else if (state.get('movingComp')) {
+//	  state.set('movingComp', false);
+//	} else if (state.get('connectingComp')) {
+//
+//	  if(state.get('childComp')) {
+//		connect.call({
+//		  //TODO ... change to lcModelId ... has some consequences..
+//		  lcmodelId: templateInstance.data.lcModelId,
+//		  parentCompId: state.get('parentComp')._id,
+//		  childCompId: state.get('childComp')._id,
+//		});
+//
+//	  } else {
+//		insert.call({
+//		  lcmodelId: templateInstance.data.lcModelId,
+//		  //parentCompId: state.get('parentComp')._id,
+//		  x: Number(templateInstance.gridX()),
+//		  y: Number(templateInstance.gridY()),
+//		}, (error, result) => {
+//		  connect.call({
+//			lcmodelId: templateInstance.data.lcModelId,
+//			parentCompId: state.get('parentComp')._id,
+//			childCompId: result,
+//		  });
+//		});
+//	  }
+//
+//
+//	  state.set('connectingComp', false);
+//	  $('#temporary-connector').attr('points', '');
+//	}
+//  },
+//  'click .js-edit-comp'(event, templateInstance) {
+//	const state = templateInstance.state;
+//	// in this case "this" refers to a Comps_item templateInstance
+//	// TODO -> better in comps-item.js?
+//	state.set('editComp', this.comp);
+//	$('#modal-edit-comp').openModal();
+//
+//	$('#comp-sitelocation').material_select();
+//	Materialize.updateTextFields();
+//  },
+//  'change .js-select-risk'(event, templateInstance) {
+//	const  state = templateInstance.state;
+//
+//	state.set('selectedValue', $(event.target).val());
+//  },
+//  'wheel svg'(event, templateInstance) {
+//	const state = templateInstance.state;
+//	const direction = event.originalEvent.deltaY;
+//
+//	if (direction > 0) {
+//	  state.set('currentScale', state.get('currentScale') - 0.1);
+//	} else if (direction < 0) {
+//	  state.set('currentScale', state.get('currentScale') + 0.1);
+//	}
+//  },
+//
 });

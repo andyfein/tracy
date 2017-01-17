@@ -31,6 +31,7 @@ LcModels.schema = new SimpleSchema({
   name: { type: String },
   riskModelId: { type: String, regEx: SimpleSchema.RegEx.Id },
   userId: { type: String, regEx: SimpleSchema.RegEx.Id},
+ // root: { type: String, regEx: SimpleSchema.RegEx.Id, optional: true},
 });
 
 LcModels.attachSchema(LcModels.schema);

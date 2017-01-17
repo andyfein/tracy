@@ -15,6 +15,7 @@ export const connect = new ValidatedMethod({
 	  lcmodelId,
 	  parentCompId,
 	  childCompId,
+	  isRetracted: false,
 	};
 
 	Connects.insert(connect);

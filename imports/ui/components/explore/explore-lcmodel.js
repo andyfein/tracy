@@ -1,11 +1,14 @@
+/* global d3 */
 import { Template } from 'meteor/templating';
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ReactiveDict } from 'meteor/reactive-dict';
+import { Session } from 'meteor/session';
 import { $ } from 'meteor/jquery';
 
 import './explore-lcmodel.html';
 
+import { LcModelTree } from '../lcmodel.js';
 import '../legend.html';
 import '../risk-select.js';
 
@@ -57,6 +60,25 @@ Template.Explore_lcmodel.onRendered(function exploreLcModelOnRendered() {
 	initY = this.state.get('compHeight');
   this.state.set('currentPanX', initX); 
   this.state.set('currentPanY', initY); 
+
+  let lcModel;
+  lcModel = new LcModelTree('#lcmodel-canvas', Template.currentData().riskModel);
+  Template.currentData().comps.observe({
+	added: function(doc) {
+	  lcModel.addComp(doc);
+	}
+  });
+  Template.currentData().connects.observe({
+	added: function(doc) {
+	  lcModel.addConnect(doc);
+	}
+  });
+  this.autorun(() => {
+	if(Session.get('selectedRisk')) {
+	  lcModel.updateRisks();
+	}
+	
+  });
 });
 
 Template.Explore_lcmodel.helpers({
@@ -97,50 +119,50 @@ Template.Explore_lcmodel.helpers({
 });
 
 Template.Explore_lcmodel.events({
-  'mousedown .canvas'(event, templateInstance) {
-	if(event.button != 0) return;
-	event.preventDefault();
-	const state = templateInstance.state;
-
-	state.set('panning', true);
-	state.set('oldMouseX', event.pageX);
-	state.set('oldMouseY', event.pageY);
-  },
-  'mousemove'(event, templateInstance) {
-	const state = templateInstance.state;
-
-	//tracking mouse for moving components -> TODO performance optimization?
-	state.set('currentMoveX', event.pageX);
-	state.set('currentMoveY', event.pageY);
-
-	if(state.get('panning')) {
-	  const newMouseX = event.pageX,
-	  newMouseY = event.pageY;
-	  const diffPanX = newMouseX - state.get('oldMouseX'),
-	  diffPanY = newMouseY - state.get('oldMouseY');
-	  state.set('oldMouseX', newMouseX);
-	  state.set('oldMouseY', newMouseY);
-	  state.set('currentPanX', state.get('currentPanX') + diffPanX);
-	  state.set('currentPanY', state.get('currentPanY') + diffPanY);
-	} 
-  },
-  'mouseup'(event, templateInstance) {
-	const state = templateInstance.state;
-	
-	if(state.get('panning')) {
-	  state.set('panning', false);
-	  state.set('lastPanX', state.get('currentPanX'));
-	  state.set('lastPanY', state.get('currentPanY'));
-	}
-  },
-  'wheel svg'(event, templateInstance) {
-	const state = templateInstance.state;
-	const direction = event.originalEvent.deltaY;
-
-	if (direction > 0) {
-	  state.set('currentScale', state.get('currentScale') - 0.1);
-	} else if (direction < 0) {
-	  state.set('currentScale', state.get('currentScale') + 0.1);
-	}
-  },
+//  'mousedown .canvas'(event, templateInstance) {
+//	if(event.button != 0) return;
+//	event.preventDefault();
+//	const state = templateInstance.state;
+//
+//	state.set('panning', true);
+//	state.set('oldMouseX', event.pageX);
+//	state.set('oldMouseY', event.pageY);
+//  },
+//  'mousemove'(event, templateInstance) {
+//	const state = templateInstance.state;
+//
+//	//tracking mouse for moving components -> TODO performance optimization?
+//	state.set('currentMoveX', event.pageX);
+//	state.set('currentMoveY', event.pageY);
+//
+//	if(state.get('panning')) {
+//	  const newMouseX = event.pageX,
+//	  newMouseY = event.pageY;
+//	  const diffPanX = newMouseX - state.get('oldMouseX'),
+//	  diffPanY = newMouseY - state.get('oldMouseY');
+//	  state.set('oldMouseX', newMouseX);
+//	  state.set('oldMouseY', newMouseY);
+//	  state.set('currentPanX', state.get('currentPanX') + diffPanX);
+//	  state.set('currentPanY', state.get('currentPanY') + diffPanY);
+//	} 
+//  },
+//  'mouseup'(event, templateInstance) {
+//	const state = templateInstance.state;
+//	
+//	if(state.get('panning')) {
+//	  state.set('panning', false);
+//	  state.set('lastPanX', state.get('currentPanX'));
+//	  state.set('lastPanY', state.get('currentPanY'));
+//	}
+//  },
+//  'wheel svg'(event, templateInstance) {
+//	const state = templateInstance.state;
+//	const direction = event.originalEvent.deltaY;
+//
+//	if (direction > 0) {
+//	  state.set('currentScale', state.get('currentScale') - 0.1);
+//	} else if (direction < 0) {
+//	  state.set('currentScale', state.get('currentScale') + 0.1);
+//	}
+//  },
 });

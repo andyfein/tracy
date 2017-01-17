@@ -19,13 +19,18 @@ export const insert = new ValidatedMethod({
 
 	const initialComp = {
 	  lcmodelId,
+	  isRoot: true,
 	  name: name,
 	  firmName: 'unknown',
 	  siteLocation: 'unknown',
 	  x: 0,
 	  y: 0,
+	  hasRetracted: false,
+	  isRetracted: false,
 	}
-	Comps.insert(initialComp);
+	const initialCompId = Comps.insert(initialComp);
+
+	//LcModels.update({_id: lcmodelId}, {root: initialCompId});
 
 	return lcmodelId;
   },

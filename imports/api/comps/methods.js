@@ -26,6 +26,11 @@ export const insert = new ValidatedMethod({
 	  siteLocation,
 	  x,
 	  y,
+	  contacted: false,
+	  visited: false,
+	  negotiating: false,
+	  hasRetracted: false,
+	  isRetracted: false,
 	}
 
 	return Comps.insert(comp);
@@ -39,12 +44,15 @@ export const updateInfo = new ValidatedMethod({
 	name: Comps.simpleSchema().schema('name'),
 	firmName: Comps.simpleSchema().schema('firmName'),
 	siteLocation: Comps.simpleSchema().schema('siteLocation'),
+	contacted: Comps.simpleSchema().schema('contacted'),
+	visited: Comps.simpleSchema().schema('visited'),
+	negotiating: Comps.simpleSchema().schema('negotiating')
 	//TODO clean set to false to allow for empty strings - any better idea?
   }).validator({ clean: false, filter: false }),
-  run( { compId, name, firmName, siteLocation } ) {
+  run( { compId, name, firmName, siteLocation, contacted, visited, negotiating } ) {
 	//TODO validate
 	Comps.update(compId, {
-	  $set: { name, firmName, siteLocation },
+	  $set: { name, firmName, siteLocation, contacted, visited, negotiating },
 	});
   },
 });
@@ -58,9 +66,27 @@ export const updatePosition = new ValidatedMethod({
   }).validator({ clean: true, filter: false }),
   run( { compId, newX, newY } ) {
 	//TODO validate
+	let initialComp = Comps.findOne({_id: compId});
+	let oldX = initialComp.x;
+	let oldY = initialComp.y;
+	let diffX = newX - oldX;
+	let diffY = newY - oldY;
 	Comps.update(compId, {
 	  $set: { x: newX, y: newY },
 	});
+	moveChildren(compId);
+	function moveChildren(parentCompId) {
+	  let connects = Connects.find({ parentCompId: parentCompId });	
+	  connects.forEach(function(connect) {
+		let childComp = Comps.findOne({_id: connect.childCompId});
+		oldX = childComp.x;
+		oldY = childComp.y;
+		newX = oldX + diffX; 	
+		newY = oldY + diffY;
+		Comps.update(connect.childCompId, {$set: { x: newX, y: newY }})
+		moveChildren(connect.childCompId);
+	  });
+	}
   },
 });
 

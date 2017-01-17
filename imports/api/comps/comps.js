@@ -66,6 +66,19 @@ Comps.schema = new SimpleSchema({
   },
   hasRetracted: {
 	type: Boolean,
+  },
+  isRoot: {
+	type: Boolean,
+	optional: true,
+  },
+  contacted: {
+	type: Boolean,
+  },
+  visited: {
+	type: Boolean,
+  },
+  negotiating: {
+	type: Boolean,
   }
 });
 
@@ -78,6 +91,9 @@ Comps.publicFields = {
   siteLocation: 1,
   x: 1,
   y: 1,
+  contacted: 1,
+  visited: 1,
+  negotiating: 1,
 };
 
 Comps.helpers({

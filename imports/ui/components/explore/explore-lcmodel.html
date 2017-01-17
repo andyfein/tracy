@@ -1,5 +1,5 @@
 <template name="Explore_lcmodel">
-  <svg class="canvas">
+  <svg id="lcmodel-canvas" class="canvas">
 	<defs>
 	<path id="ic_delete" d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
 	<path id="ic_edit" d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04a.996.996 0 0 0 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
@@ -11,7 +11,8 @@
     </marker>
 
 	</defs>
-	<g class="js-zoom-pan" style="{{transform}}">
+	<!--
+	<g id="lcmodel-canvas" class="js-zoom-pan" style="{{transform}}">
 	<polyline id="temporary-connector" class="connector-line" stroke-dasharray="5,5" marker-start="url(#arrow)"/>
 
 	{{#each connect in connects}}
@@ -22,11 +23,12 @@
 	{{/each}}
 
 	</g>
+	-->
   </svg>
 
 
   {{> Risk_select}}
-<a href="{{pathFor 'Explore.lcModel.map' lcModelId=lcModelId}}" class="view-switcher waves-effect waves-light btn-large">Map</a>
+<a href="{{pathFor 'Explore.lcModel.map' lcModelId=lcModelId}}" class="view-switcher teal darken-4 waves-effect waves-light btn-large">Map</a>
 
 {{> Legend}}
 

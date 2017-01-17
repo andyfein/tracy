@@ -19,12 +19,18 @@ svg.canvas {
   cursor: move;
 }
 
-polyline.connector-line{
+path.connector-line {
   fill: none;
   stroke: #B6B6B6;
   stroke-width: 5;
   stroke-linejoin: round;
 }
+//polyline.connector-line{
+//  fill: none;
+//  stroke: #B6B6B6;
+//  stroke-width: 5;
+//  stroke-linejoin: round;
+//}
 
 polyline.connector-overlay{
   fill: none;
