@@ -9,3 +9,7 @@ import './reset-password-email.js';
 
 // defining all coellections, publications and methods
 import './register-api.js';
+
+// disable websockets for uberspace
+console.log('disable websockets');
+process.env.DISABLE_WEBSOCKETS = 1;

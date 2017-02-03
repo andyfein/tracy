@@ -354,13 +354,20 @@
       "path": "packages/useraccounts_unstyled.js"
     },
     {
+      "path": "packages/launch-screen.js"
+    },
+    {
+      "path": "packages/session.js"
+    },
+    {
+      "sourceMap": "packages/3stack_country-codes.js.map",
+      "path": "packages/3stack_country-codes.js"
+    },
+    {
       "path": "packages/livedata.js"
     },
     {
       "path": "packages/hot-code-push.js"
-    },
-    {
-      "path": "packages/launch-screen.js"
     },
     {
       "sourceMap": "packages/autoupdate.js.map",

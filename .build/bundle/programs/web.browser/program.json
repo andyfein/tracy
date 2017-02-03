@@ -2,22 +2,22 @@
   "format": "web-program-pre1",
   "manifest": [
     {
-      "path": "dfba83cf46b48721be7135b76a1edcb57ea68ee3.js",
+      "path": "14637d24de6e5050e35c5468dec97b114a8bd43e.js",
       "where": "client",
       "type": "js",
       "cacheable": true,
-      "url": "/dfba83cf46b48721be7135b76a1edcb57ea68ee3.js?meteor_js_resource=true",
-      "size": 1361404,
-      "hash": "dfba83cf46b48721be7135b76a1edcb57ea68ee3"
+      "url": "/14637d24de6e5050e35c5468dec97b114a8bd43e.js?meteor_js_resource=true",
+      "size": 1400214,
+      "hash": "14637d24de6e5050e35c5468dec97b114a8bd43e"
     },
     {
-      "path": "ff81c43eab1945013aa4854bb30613868b0e7e56.css",
+      "path": "81ac337805338c355b6b841f7c5757c311337a47.css",
       "where": "client",
       "type": "css",
       "cacheable": true,
-      "url": "/ff81c43eab1945013aa4854bb30613868b0e7e56.css?meteor_css_resource=true",
-      "size": 114643,
-      "hash": "ff81c43eab1945013aa4854bb30613868b0e7e56"
+      "url": "/81ac337805338c355b6b841f7c5757c311337a47.css?meteor_css_resource=true",
+      "size": 115044,
+      "hash": "81ac337805338c355b6b841f7c5757c311337a47"
     },
     {
       "path": "packages/poetic_materialize-scss/dist/font/material-design-icons/Material-Design-Icons.eot",

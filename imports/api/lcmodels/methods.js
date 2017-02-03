@@ -17,6 +17,7 @@ export const insert = new ValidatedMethod({
   run({ name, riskModelId, userId }) {
     const lcmodelId = LcModels.insert({ name, riskModelId, userId });
 
+	// TODO invoke  own insert function
 	const initialComp = {
 	  lcmodelId,
 	  isRoot: true,
@@ -25,6 +26,9 @@ export const insert = new ValidatedMethod({
 	  siteLocation: 'unknown',
 	  x: 0,
 	  y: 0,
+	  contacted: false,
+	  visited: false,
+	  negotiating: false,
 	  hasRetracted: false,
 	  isRetracted: false,
 	}
