@@ -1,5 +1,6 @@
 /* global d3 */
 import { Template } from 'meteor/templating';
+import { Tracker } from 'meteor/tracker';
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { ReactiveDict } from 'meteor/reactive-dict';
@@ -23,7 +24,7 @@ Template.Explore_lcmodel.onCreated(function exploreLcModelOnCreated() {
 	  lcModelId: { type: SimpleSchema.RegEx.Id },
       comps: { type: Mongo.Cursor },
       connects: { type: Mongo.Cursor },
-	  // TODO: unsatisfying .. I have no idea what RiskModels._helpers does - RiskModels.schema doesn't work as I think it should
+	  // FIXME: I have no idea what RiskModels._helpers does - RiskModels.schema doesn't work as I think it should
       riskModel: { type: RiskModels._helpers },
     }).validate(Template.currentData());
   });
@@ -63,21 +64,32 @@ Template.Explore_lcmodel.onRendered(function exploreLcModelOnRendered() {
 
   let lcModel;
   lcModel = new LcModelTree('#lcmodel-canvas', Template.currentData().riskModel);
-  Template.currentData().comps.observe({
-	added: function(doc) {
-	  lcModel.addComp(doc);
+  let comps = Template.currentData().comps;
+  let connects = Template.currentData().connects;
+  let wasInit = false
+  Tracker.autorun(() => {
+	// FIXME only to prevent rerun when selected risk changes ... normally, this shouldn't even be necessary ??
+	if (!wasInit) {
+	  lcModel.setCompsAndConnects(comps.fetch(), connects.fetch());
+	  wasInit = true;
 	}
   });
-  Template.currentData().connects.observe({
-	added: function(doc) {
-	  lcModel.addConnect(doc);
-	}
-  });
-  this.autorun(() => {
-	if(Session.get('selectedRisk')) {
-	  lcModel.updateRisks();
-	}
-	
+  //Template.currentData().comps.observe({
+  //  added: function(doc) {
+  //    lcModel.addComp(doc);
+  //  }
+  //});
+  //Template.currentData().connects.observe({
+  //  added: function(doc) {
+  //    lcModel.addConnect(doc);
+  //  }
+  //});
+  //
+  Tracker.autorun(() => {
+    if(Session.get('selectedRisk')) {
+      lcModel.updateRisks();
+    }
+    
   });
 });
 

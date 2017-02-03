@@ -187,7 +187,6 @@ Template.Show_lcmodel.helpers({
   },
   editArgs() {
 	const state = Template.instance().state;
-	console.log(state.get('editComp'));
 	return {
 	  editComp: state.get('editComp'),
 	  state: state,

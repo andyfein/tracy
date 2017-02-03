@@ -1,28 +1,47 @@
+// d3 is a global var and not imported
 /* global d3 */
-// d3 needs to get passed a var in some functions even if it's not used
+// d3 functions need to get passed a var in some cases, stop complaining!
 /* eslint no-unused-vars: ["error", {"argsIgnorePattern": "d3Ignored"}] */
+
 import {_} from 'meteor/underscore';
 import { Session } from 'meteor/session';
 import { CountryCodes } from 'meteor/3stack:country-codes';
 
+/**
+ * This class is responsible for drawing a tree layout of a life cycle model's components.
+ */
 export class LcModelTree {
+  /**
+   * Create a new life cycle model's tree layout as SVG
+   * @param { string } element - Dom element where to embed the svg.
+   * @param { Object } riskModel - The risk model used to calculate risk ratings.
+   * @param { string } lcModelId - Id of the rendered life cycle model.
+   */
   constructor(element, riskModel, lcModelId) {
-	this.lcModelId = lcModelId;
+	// drawing canvas
 	this.baseSvg = d3.select(element);
 	this.svgGroup = this.baseSvg.append('g');
+
+	this.lcModelId = lcModelId;
+	this.riskModel = riskModel;
+	
+	// tree data
 	this.root = null;
 	this.nodes = [];
 	this.links = [];
+
+	// FIXME is this var actually necessary?
 	this.i = 0;
-	this.riskModel = riskModel;
+
+	// initialize tree layout
 	this.tree = d3.layout.tree()
 	.nodeSize([250, 250])
 	.separation(function(a, b) {
+	  // bigger separation between children with different parents
 	  return a.parent == b.parent ? 1 : 1.2;
 	});
-	this.diagonal = d3.svg.diagonal().projection(function(d) {
-	  return [d.x, d.y];
-	});
+
+	// initialize zoom and panning behavior
 	let zoom = d3.behavior.zoom()
 	.scaleExtent([0.2, 2])
 	.on('zoom', () =>  {
@@ -31,8 +50,27 @@ export class LcModelTree {
 	this.baseSvg.call(zoom);
 	this.baseSvg.attr('transform', 'translate(' + (window.innerWidth/2 - 185/2) + ',' + 100 + ')');
 
-	this.tree.children()
-	
+	// FIXME maybe it's possible to set a children access function, so findChildren method is unnecessary 
+	//this.tree.children()
+  }
+
+  /**
+   * Set all components and connects and initialize drawing of the tree layout.
+   * @param { Object[] } comps - Array of components.
+   * @param { Object[] } connects - Array of parent-child relationships.
+   */
+  setCompsAndConnects(comps, connects) {
+	for (let i = 0; i < comps.length; i++) {
+	  if(comps[i].isRoot) {
+		this.root = comps[i];
+	  }
+	  //comps[i].riskClass = this.riskClass(comps[i]);
+	}
+	this.nodes = comps;
+	this.links = connects;
+
+	// Initial drawing of the tree layout.
+	this.renderTree();
   }
 
   addComp(comp) {
